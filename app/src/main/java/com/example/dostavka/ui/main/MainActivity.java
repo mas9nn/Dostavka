@@ -38,14 +38,10 @@ public class MainActivity extends AppCompatActivity {
         setUp();
         setupNavMenu();
 
-
         binding.setViewmodel(model);
 
         model.username = "Sanek kak dela";
-
-
     }
-
     private void setUp() {
         navigationView = binding.navView;
         toolbar = binding.toolbar;
@@ -105,6 +101,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         navigationView.setCheckedItem(R.id.first);
-
     }
 }
