@@ -62,7 +62,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:src="@drawable/ic_search_72pt_3x"
-                    android:tint="@android:color/darker_gray" />
+                    android:tint="@color/gray" />
 
                 <EditText
                     android:id="@+id/editFind"
@@ -72,7 +72,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
                     android:hint="Find"
-                    android:textColorHint="@android:color/darker_gray"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
 
             </LinearLayout>

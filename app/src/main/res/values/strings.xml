@@ -2,4 +2,7 @@
     <string name="app_name">Dostavka</string>
     <string name="open_drawer">Drawer Open</string>
     <string name="close_drawer">Drawer Close</string>
+    <string name="forgotPwd"><u>Забыл пароль?</u></string>
+    <string name="needAcc"><u>Зарегистрироваться</u></string>
+    <string name="logIn"><u>Войти в свой аккаунт</u></string>
 </resources>

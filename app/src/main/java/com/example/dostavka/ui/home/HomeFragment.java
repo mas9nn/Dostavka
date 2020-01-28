@@ -2,8 +2,8 @@ package com.example.dostavka.ui.home;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,12 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dostavka.R;
-import com.example.dostavka.databinding.HomeFragmentBinding;
+import com.example.dostavka.databinding.FragmentHomeBinding;
 import com.example.dostavka.ui.home.adapters.CategoryRecyclerViewAdapter;
 import com.example.dostavka.ui.home.adapters.HomePagerAdapter;
 import com.example.dostavka.ui.home.adapters.RestaurantRecyclerViewAdapter;
 import com.example.dostavka.ui.home.models.HomeCategoryModel;
 import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
+import com.example.dostavka.ui.restaurant.RestaurantActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
-    HomeFragmentBinding binding;
+    FragmentHomeBinding binding;
     public static final String TAG = HomeFragment.class.getSimpleName();
 
     public static HomeFragment newInstance() {
@@ -44,7 +45,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setHomeViewModel(mViewModel);
         binding.setLifecycleOwner(this);
@@ -55,28 +56,34 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRestourauntRecyclerView() {
-        restaurantCategoryModels.add(new RestaurantCategoryModel());
-        restaurantCategoryModels.add(new RestaurantCategoryModel());
-        restaurantCategoryModels.add(new RestaurantCategoryModel());
-        restaurantCategoryModels.add(new RestaurantCategoryModel());
-        restaurantCategoryModels.add(new RestaurantCategoryModel());
-        restaurantCategoryModels.add(new RestaurantCategoryModel());
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
         RestaurantRecyclerViewAdapter categoryAdapter = new RestaurantRecyclerViewAdapter(restaurantCategoryModels,requireContext());
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(requireContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         binding.restaurantRecycler.setLayoutManager(layoutManager);
-        binding.restaurantRecycler.setHasFixedSize(true);
         binding.restaurantRecycler.setNestedScrollingEnabled(false);
         binding.restaurantRecycler.setAdapter(categoryAdapter);
+        categoryAdapter.setClickListener(new RestaurantRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivity(new Intent(requireContext(), RestaurantActivity.class));
+            }
+        });
     }
 
     private void initCategoryRecyclerView() {
-        categoryModels.add(new HomeCategoryModel("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png","Googel"));
-        categoryModels.add(new HomeCategoryModel("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png","Googel"));
-        categoryModels.add(new HomeCategoryModel("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png","Googel"));
-        categoryModels.add(new HomeCategoryModel("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png","Googel"));
-        categoryModels.add(new HomeCategoryModel("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png","Googel"));
-        categoryModels.add(new HomeCategoryModel("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png","Googel"));
+        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+
+
         CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels,requireContext());
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);

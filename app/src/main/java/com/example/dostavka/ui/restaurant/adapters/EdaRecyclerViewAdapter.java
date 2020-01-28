@@ -1,4 +1,4 @@
-package com.example.dostavka.ui.home.adapters;
+package com.example.dostavka.ui.restaurant.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,19 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dostavka.R;
-import com.example.dostavka.ui.home.models.HomeCategoryModel;
 import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantRecyclerViewAdapter.MyViewHolder> {
+public class EdaRecyclerViewAdapter extends RecyclerView.Adapter<EdaRecyclerViewAdapter.MyViewHolder> {
 
     private ItemClickListener mClickListener;
     private List<RestaurantCategoryModel> categoryModels;
     private Context context;
 
-    public RestaurantRecyclerViewAdapter(List<RestaurantCategoryModel> categoryModels, Context context) {
+    public EdaRecyclerViewAdapter(List<RestaurantCategoryModel> categoryModels, Context context) {
         this.categoryModels = categoryModels;
         this.context = context;
     }
@@ -31,18 +30,12 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_restaurant, parent, false));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_restaurant_eat, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.name.setText(categoryModels.get(position).getName());
-        holder.rating.setText(categoryModels.get(position).getRating());
-        holder.duration.setText(categoryModels.get(position).getMin());
-        holder.rating_all.setText(categoryModels.get(position).getRating());
-        holder.price.setText(categoryModels.get(position).getPrice());
-        holder.name_glav.setText(categoryModels.get(position).getName());
-        Picasso.get().load(categoryModels.get(position).getImage()).into(holder.image);
+
     }
 
     @Override

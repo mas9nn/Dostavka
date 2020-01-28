@@ -7,7 +7,7 @@
         android:top="3dp">
         <shape>
             <corners android:radius="6dp"/>
-            <solid android:color="@android:color/holo_green_dark"/>
+            <solid android:color="@color/gray"/>
         </shape>
     </item>
 </layer-list>

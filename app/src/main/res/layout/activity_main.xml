@@ -73,7 +73,7 @@
             android:background="@color/back_for_feed"
             android:fitsSystemWindows="true"
             app:itemBackground="@drawable/selector"
-            app:itemShapeAppearanceOverlay="@android:color/darker_gray"
+            app:itemShapeAppearanceOverlay="@color/gray"
             app:itemTextColor="@android:color/black"
             app:menu="@menu/activity_main_drawer">
 
