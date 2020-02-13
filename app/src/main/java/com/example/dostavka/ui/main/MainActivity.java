@@ -9,7 +9,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -23,7 +26,7 @@ import com.example.dostavka.ui.profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     MainActivityViewModel model;
@@ -75,51 +78,71 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.nav_header_main, binding.navView, false);
         binding.navView.addHeaderView(navHeaderMainBinding.getRoot());
         navHeaderMainBinding.setViewmodel(model);
-        Picasso.get().load("http://hornews.com/images/news_large/c1d4b2b8ec608ea72764c5678816d5c9.jpg").into(navHeaderMainBinding.imageBlur);
+        Picasso.get().load("https://www.stickpng.com/assets/images/580b57fbd9996e24bc43be54.png").into(navHeaderMainBinding.imageViewName);
         navHeaderMainBinding.headerOfdrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.toolbarTitle.setVisibility(View.GONE);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .disallowAddToBackStack()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                         .replace(R.id.container, ProfileFragment.newInstance(), ProfileFragment.TAG)
                         .commit();
+                drawer_layout.closeDrawer(GravityCompat.START);
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orange)));
+
+                ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawer_layout, toolbar,R.string.app_name, R.string.app_name);
+                mDrawerToggle.getDrawerArrowDrawable().setColor(Color.WHITE);
+                drawer_layout.addDrawerListener(mDrawerToggle);
+
+                mDrawerToggle.syncState();
+                onNavigationItemSelected(navigationView.getMenu().getItem(5));
+                navigationView.setCheckedItem(R.id.menu_none);
             }
         });
         navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawer_layout.closeDrawer(GravityCompat.START);
-                switch (item.getItemId()) {
-                    case R.id.first:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .disallowAddToBackStack()
-                                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
-                                .replace(R.id.container, HomeFragment.newInstance(), HomeFragment.TAG)
-                                .commit();
-                        return true;
-                    case R.id.second:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .disallowAddToBackStack()
-                                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
-                                .replace(R.id.container, CatalogFragment.newInstance(), CatalogFragment.TAG)
-                                .commit();
-                        return true;
-                    case R.id.third:
 
-                        return true;
-                    case R.id.fourth:
+        navigationView.setNavigationItemSelectedListener(this);
+        onNavigationItemSelected(navigationView.getMenu().getItem(1));
+        navigationView.setCheckedItem(R.id.second);
+    }
 
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-        });
-        navigationView.setCheckedItem(R.id.first);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        binding.toolbarTitle.setVisibility(View.VISIBLE);
+        drawer_layout.closeDrawer(GravityCompat.START);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.back_for_feed)));
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawer_layout, toolbar,R.string.app_name, R.string.app_name);
+        mDrawerToggle.getDrawerArrowDrawable().setColor(Color.GRAY);
+        drawer_layout.addDrawerListener(mDrawerToggle);
+
+        mDrawerToggle.syncState();
+        switch (item.getItemId()) {
+            case R.id.first:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .disallowAddToBackStack()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
+                        .replace(R.id.container, HomeFragment.newInstance(), HomeFragment.TAG)
+                        .commit();
+                return true;
+            case R.id.second:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .disallowAddToBackStack()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
+                        .replace(R.id.container, CatalogFragment.newInstance(), CatalogFragment.TAG)
+                        .commit();
+                return true;
+            case R.id.third:
+
+                return true;
+            case R.id.fourth:
+
+                return true;
+            default:
+                return false;
+        }
     }
 }

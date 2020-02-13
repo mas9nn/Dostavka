@@ -4,4 +4,5 @@ public interface SignInListener {
     void Success();
     void Failed(String message);
     void Finish();
+    void Start();
 }

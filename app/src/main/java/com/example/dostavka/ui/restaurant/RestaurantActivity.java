@@ -88,12 +88,12 @@ public class RestaurantActivity extends AppCompatActivity {
         categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
 
 
-        CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels, this);
+       // CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels, this);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         binding.popularRecycler.setLayoutManager(layoutManager);
         binding.popularRecycler.setHasFixedSize(true);
         binding.popularRecycler.setNestedScrollingEnabled(false);
-        binding.popularRecycler.setAdapter(categoryAdapter);
+       // binding.popularRecycler.setAdapter(categoryAdapter);
     }
 }

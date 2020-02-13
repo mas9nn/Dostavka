@@ -6,14 +6,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.dostavka.R;
 import com.example.dostavka.databinding.ActivityPagerBinding;
+import com.example.dostavka.ui.DB.DBHelper;
 import com.example.dostavka.ui.login.signIn.SignInActivity;
 import com.example.dostavka.ui.login.adapters.StartPagerAdapter;
 import com.example.dostavka.ui.login.models.StartPagerModel;
+import com.example.dostavka.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,17 @@ public class PagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor c = db.query("user", null, null, null, null, null, null);
+        c.moveToFirst();
+        if (c.getCount() > 0){
+            Intent intent = new Intent(PagerActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        c.close();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pager);
 
         model = new ViewModelProvider(this).get(PagerViewModel.class);

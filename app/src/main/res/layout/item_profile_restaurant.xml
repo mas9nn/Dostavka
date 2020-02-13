@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_of_res"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_person"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Называние ресторана"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/card_item"
+
+        app:layout_constraintTop_toBottomOf="@id/card_item" />
+
+    <ImageView
+        android:id="@+id/img_rat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_star"
+        android:tint="@android:color/holo_orange_dark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6dp"
+        android:gravity="center"
+        android:text="4.5"
+        android:textColor="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="@id/img_rat"
+        app:layout_constraintLeft_toRightOf="@id/img_rat"
+        app:layout_constraintTop_toTopOf="@id/img_rat" />
+
+    <TextView
+        android:id="@+id/rating_all"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="(135)"
+        app:layout_constraintBottom_toBottomOf="@id/img_rat"
+        app:layout_constraintLeft_toRightOf="@id/rating"
+        app:layout_constraintTop_toTopOf="@id/img_rat" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

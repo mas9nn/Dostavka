@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.dostavka.R;
 import com.example.dostavka.databinding.FragmentHomeBinding;
+import com.example.dostavka.ui.catalog.model.CatalogModel;
 import com.example.dostavka.ui.home.adapters.CategoryRecyclerViewAdapter;
 import com.example.dostavka.ui.home.adapters.HomePagerAdapter;
 import com.example.dostavka.ui.home.adapters.RestaurantRecyclerViewAdapter;
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment {
     }
 
     String[] images = {"https://c8.alamy.com/comp/MFR53E/ad-a-d-creative-modern-black-letters-logo-design-with-brush-swoosh-MFR53E.jpg", "https://c8.alamy.com/comp/MFR53E/ad-a-d-creative-modern-black-letters-logo-design-with-brush-swoosh-MFR53E.jpg"};
-    List<HomeCategoryModel> categoryModels = new ArrayList<>();
+    List<CatalogModel> categoryModels = new ArrayList<>();
     List<RestaurantCategoryModel> restaurantCategoryModels = new ArrayList<>();
 
 
@@ -76,21 +77,27 @@ public class HomeFragment extends Fragment {
     }
 
     private void initCategoryRecyclerView() {
-        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
-        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
-        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
-        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
-        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
-        categoryModels.add(new HomeCategoryModel("https://live.staticflickr.com/1739/42363610931_cc333ba7de_b.jpg", "salat"));
+        categoryModels.add(new CatalogModel("Еда",R.drawable.bel_eda));
+        categoryModels.add(new CatalogModel("Грузы",R.drawable.bel_gruz));
+        categoryModels.add(new CatalogModel("Лекарства",R.drawable.bel_lek));
+        categoryModels.add(new CatalogModel("Клининг",R.drawable.bel_klin));
+        categoryModels.add(new CatalogModel("Покупки",R.drawable.bel_pok));
+        categoryModels.add(new CatalogModel("Посылка",R.drawable.bel_pos));
 
 
-        CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels,requireContext());
+        final CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels,requireContext());
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.categoryRecycler.setLayoutManager(layoutManager);
         binding.categoryRecycler.setHasFixedSize(true);
         binding.categoryRecycler.setNestedScrollingEnabled(false);
         binding.categoryRecycler.setAdapter(categoryAdapter);
+        categoryAdapter.setClickListener(new CategoryRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                categoryAdapter.changeColor(position);
+            }
+        });
     }
 
     private void initViewPager() {

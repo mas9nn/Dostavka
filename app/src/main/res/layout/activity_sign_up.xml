@@ -79,8 +79,8 @@
                         android:layout_height="wrap_content"
                         android:background="@color/back_for_feed"
                         android:hint="Name"
-                        android:text="@={viewmodel.name}"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewmodel.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -95,8 +95,8 @@
                         android:layout_height="wrap_content"
                         android:background="@color/back_for_feed"
                         android:hint="Email"
-                        android:text="@={viewmodel.email}"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewmodel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -114,22 +114,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/back_for_feed"
-                        android:text="@={viewmodel.password}"
                         android:hint="Password"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:text="@={viewmodel.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/forgotPwd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/forgotPwd"
-                android:textColor="@color/orange"
-                app:layout_constraintRight_toRightOf="@id/input_layout"
-                app:layout_constraintTop_toBottomOf="@id/input_layout" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constrtrtr"
@@ -186,6 +176,15 @@
                 android:textColor="@color/orange" />
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

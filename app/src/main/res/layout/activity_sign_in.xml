@@ -71,20 +71,20 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:text="@={viewmodel.email}"
                     android:layout_height="wrap_content"
                     android:background="@color/back_for_feed"
-
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewmodel.email}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
                 android:background="@color/back_for_feed"
+                app:errorEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/email_layout"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/orange">
@@ -92,11 +92,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
-                    android:text="@={viewmodel.password}"
                     android:layout_height="wrap_content"
                     android:background="@color/back_for_feed"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@={viewmodel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -114,8 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:onClick="@{viewmodel::logIn}"
                 android:background="@drawable/pager_shape"
+                android:onClick="@{viewmodel::logIn}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -169,6 +169,14 @@
                 android:textColor="@color/orange" />
         </LinearLayout>
 
-
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
