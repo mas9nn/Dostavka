@@ -5,4 +5,7 @@
     <string name="forgotPwd"><u>Забыл пароль?</u></string>
     <string name="needAcc"><u>Зарегистрироваться</u></string>
     <string name="logIn"><u>Войти в свой аккаунт</u></string>
+    <string name="facebook_app_id">481946822479341</string> <string name="fb_login_protocol_scheme">fb481946822479341</string>
+    <string name="generated">Bmce+9aHdOoVtE7fS3B07tfj7Bc=</string>
+
 </resources>

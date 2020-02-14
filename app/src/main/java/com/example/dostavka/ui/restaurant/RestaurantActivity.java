@@ -56,7 +56,12 @@ public class RestaurantActivity extends AppCompatActivity {
         dialog.setContentView(sheetView);
         CardView cardView = dialog.findViewById(R.id.card_of_calendar);
         Objects.requireNonNull(cardView).setBackgroundResource(R.drawable.shape_card_topcorners);
-
+        binding.categoryBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         binding.oplata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

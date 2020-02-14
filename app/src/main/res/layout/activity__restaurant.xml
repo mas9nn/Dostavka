@@ -12,8 +12,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:background="@color/back_for_feed"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/back_for_feed">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,6 +35,15 @@
                         android:layout_height="250dp"
                         android:scaleType="centerCrop"
                         android:src="@color/orange"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/category_back"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/ic_arrow_back_white_48pt_3x"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout

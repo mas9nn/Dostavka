@@ -18,9 +18,11 @@ import android.view.ViewGroup;
 import com.example.dostavka.R;
 import com.example.dostavka.databinding.FragmentHomeBinding;
 import com.example.dostavka.ui.catalog.model.CatalogModel;
+import com.example.dostavka.ui.home.adapters.CargoRecyclerViewAdapter;
 import com.example.dostavka.ui.home.adapters.CategoryRecyclerViewAdapter;
 import com.example.dostavka.ui.home.adapters.HomePagerAdapter;
 import com.example.dostavka.ui.home.adapters.RestaurantRecyclerViewAdapter;
+import com.example.dostavka.ui.home.models.CargoModel;
 import com.example.dostavka.ui.home.models.HomeCategoryModel;
 import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
 import com.example.dostavka.ui.restaurant.RestaurantActivity;
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment {
     String[] images = {"https://c8.alamy.com/comp/MFR53E/ad-a-d-creative-modern-black-letters-logo-design-with-brush-swoosh-MFR53E.jpg", "https://c8.alamy.com/comp/MFR53E/ad-a-d-creative-modern-black-letters-logo-design-with-brush-swoosh-MFR53E.jpg"};
     List<CatalogModel> categoryModels = new ArrayList<>();
     List<RestaurantCategoryModel> restaurantCategoryModels = new ArrayList<>();
+    List<CargoModel> cargoModels = new ArrayList<>();
 
 
     @Override
@@ -53,17 +56,19 @@ public class HomeFragment extends Fragment {
         initViewPager();
         initCategoryRecyclerView();
         initRestourauntRecyclerView();
+
         return binding.getRoot();
     }
 
     private void initRestourauntRecyclerView() {
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg","Restaurant","10-20 min","4.8","3000"));
-        RestaurantRecyclerViewAdapter categoryAdapter = new RestaurantRecyclerViewAdapter(restaurantCategoryModels,requireContext());
+        restaurantCategoryModels.clear();
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+        RestaurantRecyclerViewAdapter categoryAdapter = new RestaurantRecyclerViewAdapter(restaurantCategoryModels, requireContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         binding.restaurantRecycler.setLayoutManager(layoutManager);
         binding.restaurantRecycler.setNestedScrollingEnabled(false);
@@ -76,16 +81,34 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void initCargoRecyclerView() {
+        cargoModels.clear();
+        cargoModels.add(new CargoModel(R.drawable.universal,"Универсал" ));
+        cargoModels.add(new CargoModel(R.drawable.malotonnaj,"Малотоннаж" ));
+        cargoModels.add(new CargoModel(R.drawable.gruzovik,"Большой грузовик" ));
+        final CargoRecyclerViewAdapter cargoAdapter = new CargoRecyclerViewAdapter(cargoModels, requireContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        binding.restaurantRecycler.setLayoutManager(layoutManager);
+        binding.restaurantRecycler.setNestedScrollingEnabled(false);
+        binding.restaurantRecycler.setAdapter(cargoAdapter);
+        cargoAdapter.setClickListener(new CargoRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                cargoAdapter.changeColor(position);
+            }
+        });
+    }
+
     private void initCategoryRecyclerView() {
-        categoryModels.add(new CatalogModel("Еда",R.drawable.bel_eda));
-        categoryModels.add(new CatalogModel("Грузы",R.drawable.bel_gruz));
-        categoryModels.add(new CatalogModel("Лекарства",R.drawable.bel_lek));
-        categoryModels.add(new CatalogModel("Клининг",R.drawable.bel_klin));
-        categoryModels.add(new CatalogModel("Покупки",R.drawable.bel_pok));
-        categoryModels.add(new CatalogModel("Посылка",R.drawable.bel_pos));
+        categoryModels.add(new CatalogModel("Еда", R.drawable.bel_eda));
+        categoryModels.add(new CatalogModel("Грузы", R.drawable.bel_gruz));
+        categoryModels.add(new CatalogModel("Лекарства", R.drawable.bel_lek));
+        categoryModels.add(new CatalogModel("Клининг", R.drawable.bel_klin));
+        categoryModels.add(new CatalogModel("Покупки", R.drawable.bel_pok));
+        categoryModels.add(new CatalogModel("Посылка", R.drawable.bel_pos));
 
 
-        final CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels,requireContext());
+        final CategoryRecyclerViewAdapter categoryAdapter = new CategoryRecyclerViewAdapter(categoryModels, requireContext());
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.categoryRecycler.setLayoutManager(layoutManager);
@@ -96,6 +119,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 categoryAdapter.changeColor(position);
+                switch (position){
+                    case 0:
+                        initRestourauntRecyclerView();
+                        break;
+                    case 1:
+                        initCargoRecyclerView();
+                        break;
+                }
             }
         });
     }
