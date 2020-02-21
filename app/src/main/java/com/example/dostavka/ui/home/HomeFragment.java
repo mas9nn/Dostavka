@@ -1,6 +1,7 @@
 package com.example.dostavka.ui.home;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -17,20 +18,22 @@ import android.view.ViewGroup;
 
 import com.example.dostavka.R;
 import com.example.dostavka.databinding.FragmentHomeBinding;
+import com.example.dostavka.ui.Util;
 import com.example.dostavka.ui.catalog.model.CatalogModel;
 import com.example.dostavka.ui.home.adapters.CargoRecyclerViewAdapter;
 import com.example.dostavka.ui.home.adapters.CategoryRecyclerViewAdapter;
 import com.example.dostavka.ui.home.adapters.HomePagerAdapter;
 import com.example.dostavka.ui.home.adapters.RestaurantRecyclerViewAdapter;
 import com.example.dostavka.ui.home.models.CargoModel;
-import com.example.dostavka.ui.home.models.HomeCategoryModel;
 import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
+import com.example.dostavka.ui.home.models.RestaurantResponse;
+import com.example.dostavka.ui.login.signIn.SignInListener;
 import com.example.dostavka.ui.restaurant.RestaurantActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SignInListener {
 
     private HomeViewModel mViewModel;
     FragmentHomeBinding binding;
@@ -45,11 +48,13 @@ public class HomeFragment extends Fragment {
     List<RestaurantCategoryModel> restaurantCategoryModels = new ArrayList<>();
     List<CargoModel> cargoModels = new ArrayList<>();
 
-
+    Util util = new Util();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        final SignInListener listener = this;
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        listener.Start();
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setHomeViewModel(mViewModel);
         binding.setLifecycleOwner(this);
@@ -57,17 +62,21 @@ public class HomeFragment extends Fragment {
         initCategoryRecyclerView();
         initRestourauntRecyclerView();
 
+        mViewModel.listener = listener;
+        mViewModel.getAllShops(requireContext());
+        mViewModel.shops.observe(requireActivity(), new Observer<RestaurantResponse>() {
+            @Override
+            public void onChanged(RestaurantResponse restaurantResponse) {
+                restaurantCategoryModels = restaurantResponse.getData();
+                initRestourauntRecyclerView();
+                listener.Success();
+            }
+        });
+
         return binding.getRoot();
     }
 
     private void initRestourauntRecyclerView() {
-        restaurantCategoryModels.clear();
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
         RestaurantRecyclerViewAdapter categoryAdapter = new RestaurantRecyclerViewAdapter(restaurantCategoryModels, requireContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         binding.restaurantRecycler.setLayoutManager(layoutManager);
@@ -137,4 +146,24 @@ public class HomeFragment extends Fragment {
         binding.indicator.setViewPager(binding.viewPager);
     }
 
+    @Override
+    public void Success() {
+        util.goneProgress(binding.progressBarHome);
+    }
+
+    @Override
+    public void Failed(String message) {
+        util.showToast(requireContext(),message);
+        util.goneProgress(binding.progressBarHome);
+    }
+
+    @Override
+    public void Finish() {
+        util.goneProgress(binding.progressBarHome);
+    }
+
+    @Override
+    public void Start() {
+        util.showProgress(binding.progressBarHome);
+    }
 }

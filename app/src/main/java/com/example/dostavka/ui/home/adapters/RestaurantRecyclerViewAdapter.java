@@ -38,11 +38,13 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(categoryModels.get(position).getName());
         holder.rating.setText(categoryModels.get(position).getRating());
-        holder.duration.setText(categoryModels.get(position).getMin());
+        holder.duration.setText(categoryModels.get(position).getTime());
         holder.rating_all.setText(categoryModels.get(position).getRating());
         holder.price.setText(categoryModels.get(position).getPrice());
         holder.name_glav.setText(categoryModels.get(position).getName());
-        Picasso.get().load(categoryModels.get(position).getImage()).into(holder.image);
+        if (categoryModels.get(position).getImage().length() > 0) {
+            Picasso.get().load(categoryModels.get(position).getImage()).into(holder.image);
+        }
     }
 
     @Override
@@ -51,7 +53,7 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, rating, duration, rating_all, name_glav,price;
+        TextView name, rating, duration, rating_all, name_glav, price;
         ImageView image;
 
         MyViewHolder(View itemView) {

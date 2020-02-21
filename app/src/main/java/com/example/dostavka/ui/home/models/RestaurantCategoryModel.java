@@ -1,25 +1,68 @@
 package com.example.dostavka.ui.home.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class RestaurantCategoryModel {
-    String image,name,min,rating,price;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("cat_id")
+    @Expose
+    private String cat_id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("location")
+    @Expose
+    private String location;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("time")
+    @Expose
+    private String time;
+    @SerializedName("rating")
+    @Expose
+    private String rating;
+    @SerializedName("price")
+    @Expose
+    private String price;
 
     public RestaurantCategoryModel() {
     }
 
-    public RestaurantCategoryModel(String image, String name, String min, String rating, String price) {
-        this.image = image;
+    ;
+
+    public RestaurantCategoryModel(String id, String cat_id, String name, String image, String location, String description, String time, String rating, String price) {
+        this.id = id;
+        this.cat_id = cat_id;
         this.name = name;
-        this.min = min;
+        this.image = image;
+        this.location = location;
+        this.description = description;
+        this.time = time;
         this.rating = rating;
         this.price = price;
     }
 
-    public String getImage() {
-        return image;
+    public String getId() {
+        return id;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(String cat_id) {
+        this.cat_id = cat_id;
     }
 
     public String getName() {
@@ -30,12 +73,36 @@ public class RestaurantCategoryModel {
         this.name = name;
     }
 
-    public String getMin() {
-        return min;
+    public String getImage() {
+        return image;
     }
 
-    public void setMin(String min) {
-        this.min = min;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getRating() {

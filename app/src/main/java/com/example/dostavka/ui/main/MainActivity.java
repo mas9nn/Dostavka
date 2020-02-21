@@ -20,6 +20,7 @@ import android.view.View;
 import com.example.dostavka.R;
 import com.example.dostavka.databinding.ActivityMainBinding;
 import com.example.dostavka.databinding.NavHeaderMainBinding;
+import com.example.dostavka.ui.Util;
 import com.example.dostavka.ui.catalog.CatalogFragment;
 import com.example.dostavka.ui.home.HomeFragment;
 import com.example.dostavka.ui.profile.ProfileFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     DrawerLayout drawer_layout;
     ActivityMainBinding binding;
+    Util util = new Util();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         binding.setViewmodel(model);
 
-        model.username = "Sanek kak dela";
+        model.username = util.getUserName(this);
     }
     private void setUp() {
         navigationView = binding.navView;

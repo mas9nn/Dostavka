@@ -42,11 +42,26 @@ public class Util {
         return id;
     }
 
+    public String getUserName(Context context) {
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor c = db.query("user", null, null, null, null, null, null);
+        c.moveToFirst();
+        int nameColIndex = c.getColumnIndex("name");
+        String name = c.getString(nameColIndex);
+        c.close();
+        db.close();
+        return name;
+    }
+
     public void hideProgress(ProgressBar bar) {
         bar.setVisibility(View.INVISIBLE);
     }
 
     public void showProgress(ProgressBar bar) {
         bar.setVisibility(View.VISIBLE);
+    }
+    public void goneProgress(ProgressBar bar) {
+        bar.setVisibility(View.GONE);
     }
 }

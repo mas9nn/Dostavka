@@ -71,17 +71,17 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     private void initSalatsRecycler() {
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
-        EdaRecyclerViewAdapter categoryAdapter = new EdaRecyclerViewAdapter(restaurantCategoryModels, this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        binding.salatsRecycler.setLayoutManager(layoutManager);
-        binding.salatsRecycler.setNestedScrollingEnabled(false);
-        binding.salatsRecycler.setAdapter(categoryAdapter);
+//        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+//        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+//        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+//        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+//        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+//        restaurantCategoryModels.add(new RestaurantCategoryModel("https://astana.restolife.kz/upload/information_system_30/1/7/7/item_17738/information_items_property_20439.jpg", "Restaurant", "10-20 min", "4.8", "3000"));
+//        EdaRecyclerViewAdapter categoryAdapter = new EdaRecyclerViewAdapter(restaurantCategoryModels, this);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        binding.salatsRecycler.setLayoutManager(layoutManager);
+//        binding.salatsRecycler.setNestedScrollingEnabled(false);
+//        binding.salatsRecycler.setAdapter(categoryAdapter);
     }
 
     private void initRecyclerPopular() {
