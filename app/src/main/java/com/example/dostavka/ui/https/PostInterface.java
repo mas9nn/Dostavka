@@ -1,17 +1,15 @@
 package com.example.dostavka.ui.https;
 
-import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
+import com.example.dostavka.ui.chating.models.ChatModel;
 import com.example.dostavka.ui.home.models.RestaurantResponse;
 import com.example.dostavka.ui.login.models.UserResponse;
 
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PostInterface {
@@ -29,4 +27,7 @@ public interface PostInterface {
 
     @GET("getAllShops")
     Call<RestaurantResponse> getAllShops(@Query("token") String token, @Query("id") String id);
+
+    @GET("getMessages")
+    Call<ChatModel> getMessages(@Query("token") String token, @Query("from") String id, @Query("to") String to);
 }

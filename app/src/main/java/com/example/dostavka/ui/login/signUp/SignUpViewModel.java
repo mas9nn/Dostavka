@@ -11,16 +11,12 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dostavka.ui.https.PostClient;
 import com.example.dostavka.ui.login.models.UserResponse;
-import com.example.dostavka.ui.login.models.User_param;
 import com.example.dostavka.ui.login.signIn.SignInActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

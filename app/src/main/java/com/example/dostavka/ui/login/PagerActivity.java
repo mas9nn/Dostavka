@@ -148,6 +148,12 @@ public class PagerActivity extends AppCompatActivity implements SignInListener {
                 listener.Success();
             }
         });
+
+        Intent intent = getIntent();
+        if(intent.getExtras() != null && intent.getExtras().containsKey("city")) {
+            String data = intent.getExtras().getString("city");
+            Log.wtf("asdsa",data+"");
+        }
     }
 
     private void signInGoogle() {
@@ -220,7 +226,7 @@ public class PagerActivity extends AppCompatActivity implements SignInListener {
                     String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
 
                     Log.wtf("asdas", first_name + " " + last_name + " " + email + " " + id + " " + image_url);
-                    model.clickedBtnGoogle(first_name + " " + last_name, email);
+                    model.clickedBtnGoogle(first_name + " " + last_name, id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -1,18 +1,15 @@
 package com.example.dostavka.ui.https;
 
-import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
+import com.example.dostavka.ui.chating.models.ChatModel;
 import com.example.dostavka.ui.home.models.RestaurantResponse;
 import com.example.dostavka.ui.login.models.UserResponse;
-import com.google.gson.JsonElement;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PostClient {
-    private static final String Base_URL = "https://c60c8091.ngrok.io/api/";
+    private static final String Base_URL = "https://e57d9626.ngrok.io/api/";
     private PostInterface postInterface;
     private static PostClient INSTANCE;
 
@@ -38,11 +35,16 @@ public class PostClient {
     public Call<UserResponse> createUser(String name, String email, String password) {
         return postInterface.createUser(email, name, password);
     }
+
     public Call<UserResponse> createUserOther(String name, String email) {
         return postInterface.createUserOther(email, name);
     }
 
     public Call<RestaurantResponse> getAllShops(String token, String id) {
         return postInterface.getAllShops(token, id);
+    }
+
+    public Call<ChatModel> getMessages(String token, String from, String to) {
+        return postInterface.getMessages(token, from,to);
     }
 }

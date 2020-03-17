@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid
-        android:color="#FFFFFF"/>
+        android:color="@color/back_for_feed"/>
 
 
     <corners android:radius="20dp"/>

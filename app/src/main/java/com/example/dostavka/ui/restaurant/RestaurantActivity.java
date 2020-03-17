@@ -2,6 +2,7 @@ package com.example.dostavka.ui.restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,11 +15,9 @@ import android.widget.LinearLayout;
 
 import com.example.dostavka.R;
 import com.example.dostavka.databinding.ActivityRestaurantBinding;
-import com.example.dostavka.ui.home.adapters.CategoryRecyclerViewAdapter;
-import com.example.dostavka.ui.home.adapters.RestaurantRecyclerViewAdapter;
 import com.example.dostavka.ui.home.models.HomeCategoryModel;
 import com.example.dostavka.ui.home.models.RestaurantCategoryModel;
-import com.example.dostavka.ui.restaurant.adapters.EdaRecyclerViewAdapter;
+import com.example.dostavka.ui.order.OrderActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
@@ -39,7 +38,7 @@ public class RestaurantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity__restaurant);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_restaurant);
         model = new ViewModelProvider(this).get(RestaurantViewModel.class);
         binding.cardViewRestaurant.setBackgroundResource(R.drawable.shape_card_topcorners);
         binding.setViewmodel(model);
@@ -54,6 +53,13 @@ public class RestaurantActivity extends AppCompatActivity {
         final Dialog dialog = new BottomSheetDialog(this);
         View sheetView = this.getLayoutInflater().inflate(R.layout.bottom_sheet_restaurant, null);
         dialog.setContentView(sheetView);
+        ConstraintLayout layout = dialog.findViewById(R.id.oplata);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RestaurantActivity.this, OrderActivity.class));
+            }
+        });
         CardView cardView = dialog.findViewById(R.id.card_of_calendar);
         Objects.requireNonNull(cardView).setBackgroundResource(R.drawable.shape_card_topcorners);
         binding.categoryBack.setOnClickListener(new View.OnClickListener() {
